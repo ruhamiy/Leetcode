@@ -34,17 +34,18 @@
             names[i], names[max_index] = names[max_index], names[i]
         
         return names"""
-"""insertion sort """
-class Solution(object):
+
+        
+"""insertion sort 
+ class Solution(object):
     def sortPeople(self, names, heights):
-        """
+       
         :type names: List[str]
         :type heights: List[int]
         :rtype: List[str]
-        """
-        n = len(names)
         
-        # Insertion Sort based on heights
+        n = len(names)
+       
         for i in range(1, n):
             key_height = heights[i]
             key_name = names[i]
@@ -58,7 +59,26 @@ class Solution(object):
             heights[j + 1] = key_height
             names[j + 1] = key_name
         
-        return names
+        return names"""
 
 
+
+"""counting sort"""
+class Solution(object):
+    def sortPeople(self, names, heights):
+        """
+        :type names: List[str]
+        :type heights: List[int]
+        :rtype: List[str]
+        """
+        maximum = max(heights)
+        count = [[] for _ in range(maximum + 1)]
+        for name, height in zip(names, heights):
+            count[height].append(name)
         
+        result = []
+        for h in range(maximum, -1, -1):
+            for name in count[h]:
+                result.append(name)
+        
+        return result
